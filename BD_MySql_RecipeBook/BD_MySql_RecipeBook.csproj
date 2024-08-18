@@ -87,6 +87,12 @@
     <Compile Include="FormLunch.Designer.cs">
       <DependentUpon>FormLunch.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyRecipes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyRecipes.Designer.cs">
+      <DependentUpon>MyRecipes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddOwnRecipe.resx">
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLunch.resx">
       <DependentUpon>FormLunch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyRecipes.resx">
+      <DependentUpon>MyRecipes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

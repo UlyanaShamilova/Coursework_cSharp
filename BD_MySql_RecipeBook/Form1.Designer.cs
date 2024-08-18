@@ -45,10 +45,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Monotype Corsiva", 42F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label1.Location = new System.Drawing.Point(277, 33);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 42F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label1.Location = new System.Drawing.Point(369, 41);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(761, 67);
+            this.label1.Size = new System.Drawing.Size(1142, 79);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ваша електронна книга рецептів";
             // 
@@ -56,9 +57,10 @@
             // 
             this.breakfast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.breakfast.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.breakfast.Location = new System.Drawing.Point(165, 162);
+            this.breakfast.Location = new System.Drawing.Point(220, 199);
+            this.breakfast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.breakfast.Name = "breakfast";
-            this.breakfast.Size = new System.Drawing.Size(183, 58);
+            this.breakfast.Size = new System.Drawing.Size(244, 71);
             this.breakfast.TabIndex = 1;
             this.breakfast.Text = "Сніданок";
             this.breakfast.UseVisualStyleBackColor = true;
@@ -68,9 +70,10 @@
             // 
             this.lunch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.lunch.Location = new System.Drawing.Point(620, 162);
+            this.lunch.Location = new System.Drawing.Point(827, 199);
+            this.lunch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lunch.Name = "lunch";
-            this.lunch.Size = new System.Drawing.Size(183, 58);
+            this.lunch.Size = new System.Drawing.Size(244, 71);
             this.lunch.TabIndex = 2;
             this.lunch.Text = "Обід";
             this.lunch.UseVisualStyleBackColor = true;
@@ -80,9 +83,10 @@
             // 
             this.dinner.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.dinner.Location = new System.Drawing.Point(165, 507);
+            this.dinner.Location = new System.Drawing.Point(220, 624);
+            this.dinner.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dinner.Name = "dinner";
-            this.dinner.Size = new System.Drawing.Size(183, 58);
+            this.dinner.Size = new System.Drawing.Size(244, 71);
             this.dinner.TabIndex = 3;
             this.dinner.Text = "Вечеря";
             this.dinner.UseVisualStyleBackColor = true;
@@ -92,9 +96,10 @@
             // 
             this.dessert.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dessert.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.dessert.Location = new System.Drawing.Point(632, 506);
+            this.dessert.Location = new System.Drawing.Point(843, 623);
+            this.dessert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dessert.Name = "dessert";
-            this.dessert.Size = new System.Drawing.Size(183, 58);
+            this.dessert.Size = new System.Drawing.Size(244, 71);
             this.dessert.TabIndex = 5;
             this.dessert.Text = "Десерти";
             this.dessert.UseVisualStyleBackColor = true;
@@ -103,36 +108,40 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.label2.Location = new System.Drawing.Point(179, 250);
+            this.label2.Location = new System.Drawing.Point(239, 308);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(256, 158);
+            this.label2.Size = new System.Drawing.Size(341, 194);
             this.label2.TabIndex = 6;
             this.label2.Text = "Каші та овсянки\r\n\r\nТости та блинчики\r\n\r\nФруктові салати";
             // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.label3.Location = new System.Drawing.Point(632, 250);
+            this.label3.Location = new System.Drawing.Point(843, 308);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(256, 158);
+            this.label3.Size = new System.Drawing.Size(341, 194);
             this.label3.TabIndex = 7;
             this.label3.Text = "Супи та бульйони\r\n\r\nСалати та закуски\r\n\r\nГарніри та каші";
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.label4.Location = new System.Drawing.Point(159, 595);
+            this.label4.Location = new System.Drawing.Point(212, 732);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(294, 158);
+            this.label4.Size = new System.Drawing.Size(392, 194);
             this.label4.TabIndex = 8;
             this.label4.Text = "Пасти та ризотто\r\n\r\nМ\'ясні та рибні страви\r\n\r\nБарбекю";
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.label6.Location = new System.Drawing.Point(662, 595);
+            this.label6.Location = new System.Drawing.Point(883, 732);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(141, 158);
+            this.label6.Size = new System.Drawing.Size(188, 194);
             this.label6.TabIndex = 10;
             this.label6.Text = "Торти \r\n\r\nТістечка \r\n\r\nПироги\r\n";
             // 
@@ -140,18 +149,20 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(940, 238);
+            this.label5.Location = new System.Drawing.Point(1253, 293);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(386, 29);
+            this.label5.Size = new System.Drawing.Size(483, 36);
             this.label5.TabIndex = 11;
             this.label5.Text = "Бажаєте додати свій рецепт? ";
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1055, 294);
+            this.button1.Location = new System.Drawing.Point(1407, 362);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(166, 47);
+            this.button1.Size = new System.Drawing.Size(221, 58);
             this.button1.TabIndex = 12;
             this.button1.Text = "Додати";
             this.button1.UseVisualStyleBackColor = true;
@@ -160,10 +171,11 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(1015, 694);
+            this.button2.Location = new System.Drawing.Point(1353, 854);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
             this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button2.Size = new System.Drawing.Size(259, 47);
+            this.button2.Size = new System.Drawing.Size(345, 58);
             this.button2.TabIndex = 13;
             this.button2.Text = "Мої рецепти";
             this.button2.UseVisualStyleBackColor = true;
@@ -171,10 +183,10 @@
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Wheat;
-            this.ClientSize = new System.Drawing.Size(1338, 793);
+            this.ClientSize = new System.Drawing.Size(1784, 976);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
@@ -188,6 +200,8 @@
             this.Controls.Add(this.breakfast);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Головна";

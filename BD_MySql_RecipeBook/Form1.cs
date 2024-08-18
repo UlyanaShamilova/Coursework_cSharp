@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,7 +55,9 @@ namespace BD_MySql_RecipeBook
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            MyRecipes myRecipes = new MyRecipes();
+            myRecipes.Show();
         }
     }
 }

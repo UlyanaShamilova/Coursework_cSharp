@@ -4,15 +4,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Mail;
 
 namespace BD_MySql_RecipeBook
 {
     public partial class FormBreakfast : Form
     {
+        private int selectedRecipeId = -1;
         public FormBreakfast()
         {
             InitializeComponent();
@@ -362,5 +366,85 @@ namespace BD_MySql_RecipeBook
 
             dgv1.ClearSelection();
         }
+
+        private void search_bt_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DBClass db = new DBClass();
+
+            DataTable table = new DataTable();
+
+            MySqlCommand command = new MySqlCommand("SELECT name, ingredients, instructions FROM recipes_table WHERE id = 7", db.GetConnection());
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+
+            adapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                DataRow row = table.Rows[0];
+                string recipeName = row["name"].ToString();
+                string ingredients = row["ingredients"].ToString();
+                string instructions = row["instructions"].ToString();
+
+                // Вызов метода отправки рецепта на почту
+                string recipientEmail = Convert.ToString(textBox1.Text);
+                SendEmail(recipeName, ingredients, instructions, recipientEmail);
+            }
+            else
+            {
+                MessageBox.Show("Рецепт не найден.");
+            }
+        }
+
+
+
+
+        private void SendEmail(string recipeName, string ingredients, string instructions, string recipientEmail)
+        {
+            try
+            {
+                // Создаем письмо
+                MailMessage mail = new MailMessage(); // объект письма
+                mail.From = new MailAddress("ulanasamileva1@gmail.com"); // адрес отправителя письма
+                mail.To.Add(recipientEmail); // адрес получателя
+                mail.Subject = $"Recipe: {recipeName}"; // тема письма
+
+                // Формируем тело письма
+                StringBuilder sb = new StringBuilder(); // объект для работы со строкой
+                sb.AppendLine($"Recipe Name: {recipeName}"); // добавляем название рецепта в письмо
+                sb.AppendLine(); // добавляем пустую строку
+                sb.AppendLine("Ingredients:"); // добавляем заголовок "ингредиенты"
+                sb.AppendLine(ingredients); // добавляем список ингредиентов
+                sb.AppendLine(); // добавляем пустую строку
+                sb.AppendLine("Instructions:"); // добавляем заголовок "инструкции"
+                sb.AppendLine(instructions); // добавляем инструкции приготовления
+
+                mail.Body = sb.ToString(); // преобразует собранный текст в StringBuilder в строку и установит ее как тело письма
+
+                // Настройки SMTP клиента
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com") // объект для отправки письма через SMTP сервер
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("ulanasamileva1@gmail.com", "abrv woqs xotl cuax"),
+                    EnableSsl = true,
+                };
+
+                // Отправка письма
+                smtpClient.Send(mail); // отправка письма
+                MessageBox.Show("Рецепт успешно отправлен!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при отправке письма: {ex.Message}");
+            }
+        }
+
+
+
     }
 }
