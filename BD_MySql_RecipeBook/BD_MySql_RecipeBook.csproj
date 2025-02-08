@@ -50,12 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddOwnRecipe.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddOwnRecipe.Designer.cs">
-      <DependentUpon>AddOwnRecipe.cs</DependentUpon>
-    </Compile>
     <Compile Include="DBClass.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -63,58 +57,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBreakfast.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormBreakfast.Designer.cs">
-      <DependentUpon>FormBreakfast.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormDessert.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormDessert.Designer.cs">
-      <DependentUpon>FormDessert.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormDinner.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormDinner.Designer.cs">
-      <DependentUpon>FormDinner.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormLunch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormLunch.Designer.cs">
-      <DependentUpon>FormLunch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MyRecipes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MyRecipes.Designer.cs">
-      <DependentUpon>MyRecipes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddOwnRecipe.resx">
-      <DependentUpon>AddOwnRecipe.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormBreakfast.resx">
-      <DependentUpon>FormBreakfast.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormDessert.resx">
-      <DependentUpon>FormDessert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormDinner.resx">
-      <DependentUpon>FormDinner.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormLunch.resx">
-      <DependentUpon>FormLunch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MyRecipes.resx">
-      <DependentUpon>MyRecipes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -137,6 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg_book.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_bg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
