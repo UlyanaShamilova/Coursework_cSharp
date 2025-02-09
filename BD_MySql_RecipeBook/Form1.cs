@@ -18,14 +18,16 @@ namespace BD_MySql_RecipeBook
     public partial class FormMain : Form
     {
         private MySqlConnection connection;
+
         public FormMain()
         {
             InitializeComponent();
             // Ініціалізація з'єднання
             string connectionString = "server=localhost;port=3306;username=root;password=root; database=recipes;";
             connection = new MySqlConnection(connectionString);
-            connection.Open(); // Открываем соединение с базой данных
             GenerateRandomMenu();
+
+            textBox1.TextChanged += textBox1_TextChanged;
         }
 
         // Функція для виконання SQL-запиту та повернення данних в DataTable
@@ -759,71 +761,124 @@ namespace BD_MySql_RecipeBook
         // Завантаження категорій в ComboBox
         private void LoadCategories()
         {
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Усі категорії"); // Добавляем "Все категории"
             comboBox1.Items.Add("breakfast");
             comboBox1.Items.Add("dessert");
             comboBox1.Items.Add("dinner");
             comboBox1.Items.Add("lunch");
-        }
 
-        // Завантаження інгредієнтів в ComboBox
-        private void LoadIngredients()
-        {
-            comboBox2.Items.Clear();
-            string[] tables = { "breakfast", "dessert", "dinner", "lunch" };
-
-            foreach (string table in tables)
-            {
-                string query = $"SELECT DISTINCT ingredients FROM {table}";
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string ingredient = reader.GetString("ingredients");
-                    if (!comboBox2.Items.Contains(ingredient)) // виключаємо повторення
-                    {
-                        comboBox2.Items.Add(ingredient);
-                    }
-                }
-                reader.Close();
-            }
+            comboBox1.SelectedIndex = 0; // По умолчанию выбираем "Все категории"
         }
 
         private void LoadRecipes()
         {
-            if (comboBox1.SelectedItem == null)
+            string query;
+
+            if (comboBox1.SelectedItem == null || comboBox1.SelectedItem.ToString() == "Усі категорії")
             {
-                MessageBox.Show("Выберите категорию.");
-                return;
+                // Если выбрана "Все категории" или ничего не выбрано, загружаем только название и ингредиенты всех рецептов
+                query = @"
+        SELECT name, ingredients FROM (
+            SELECT name, ingredients FROM breakfast 
+            UNION ALL 
+            SELECT name, ingredients FROM lunch 
+            UNION ALL 
+            SELECT name, ingredients FROM dinner 
+            UNION ALL 
+            SELECT name, ingredients FROM dessert
+        ) AS all_recipes";
             }
-
-            string categoryTable = comboBox1.SelectedItem.ToString(); 
-            string query = $"SELECT * FROM {categoryTable} WHERE 1=1";
-
-            if (comboBox2.SelectedItem != null)
+            else
             {
-                query += " AND ingredient = @ingredients";
-            }
-
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-
-            if (comboBox2.SelectedItem != null)
-            {
-                cmd.Parameters.AddWithValue("@ingredients", comboBox2.SelectedItem.ToString());
+                // Если выбрана конкретная категория, загружаем только название и ингредиенты из выбранной категории
+                string categoryTable = comboBox1.SelectedItem.ToString();
+                query = $"SELECT name, ingredients FROM {categoryTable}";
             }
 
             try
             {
-                MySqlDataReader reader = cmd.ExecuteReader();
-                DataTable dataTable = new DataTable();
-                dataTable.Load(reader);
-                dataGridView9.DataSource = dataTable;
-                reader.Close();
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    connection.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(reader);
+                    dataGridView9.DataSource = dataTable;
+                    reader.Close();
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка при загрузке данных: " + ex.Message);
             }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+
+        private void LoadRecipesByIngredient()
+        {
+            
+
+            string ingredientFilter = textBox1.Text.Trim();
+
+            if (string.IsNullOrEmpty(ingredientFilter))
+            {
+                LoadRecipes(); // Если текстбокс пустой, загружаем рецепты по категории
+                return;
+            }
+
+            // Берем первые 3 буквы ингредиента (для поиска по корню)
+            string rootIngredient = ingredientFilter.Length >= 3 ? ingredientFilter.Substring(0, 3) : ingredientFilter;
+
+            string query = @"
+                SELECT name, ingredients FROM (
+                    SELECT name, ingredients FROM breakfast 
+                    UNION ALL 
+                    SELECT name, ingredients FROM lunch 
+                    UNION ALL 
+                    SELECT name, ingredients FROM dinner 
+                    UNION ALL 
+                    SELECT name, ingredients FROM dessert
+                ) AS all_recipes
+                WHERE ingredients LIKE @ingredientRoot";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ingredientRoot", "%" + rootIngredient + "%");
+
+                    connection.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(reader);
+                    dataGridView9.DataSource = dataTable;
+
+                    if (dataTable.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Рецепты не найдены!", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при загрузке данных: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            LoadRecipesByIngredient();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -831,21 +886,10 @@ namespace BD_MySql_RecipeBook
             LoadRecipes();
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadRecipes();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoadRecipes();
-        }
-
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadCategories();
-            LoadIngredients();
+            LoadRecipes();
         }
-
     }
 }
